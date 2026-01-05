@@ -4,12 +4,12 @@ from datetime import datetime
 import tkinter as tk
 from tkinter import ttk
 
-# ---------------- GLOBAL VARIABLES ---------------- #
+
 sniffing = False
 packet_count = 0
 sniffer_thread = None
 
-# ---------------- PACKET HANDLER ---------------- #
+
 def packet_handler(packet):
     global packet_count
 
@@ -33,28 +33,28 @@ def packet_handler(packet):
         root.after(0, update_gui,
                    packet_count, time_now, src_ip, dst_ip, protocol)
 
-# ---------------- SAFE GUI UPDATE ---------------- #
+
 def update_gui(no, time, src, dst, proto):
     packet_table.insert("", "end", values=(no, time, src, dst, proto))
     counter_label.config(text=f"Packets Captured: {no}")
 
-# ---------------- STOP FILTER ---------------- #
+
 def stop_filter(packet):
     return not sniffing
 
-# ---------------- SNIFFER THREAD ---------------- #
+
 def start_sniffer():
     sniff(prn=packet_handler,
           store=False,
           stop_filter=stop_filter,
           filter="ip")
 
-# ---------------- BUTTON ACTIONS ---------------- #
+
 def start_sniffing():
     global sniffing, sniffer_thread
 
     if sniffing:
-        return  # Prevent multiple starts
+        return  
 
     sniffing = True
     status_label.config(text="Sniffing Active", fg="green")
@@ -67,7 +67,7 @@ def stop_sniffing():
     sniffing = False
     status_label.config(text="Sniffing Stopped", fg="red")
 
-# ---------------- GUI SETUP ---------------- #
+
 root = tk.Tk()
 root.title("Network Packet Analyzer")
 root.geometry("900x480")
@@ -125,5 +125,5 @@ for col in columns:
 
 packet_table.pack(pady=10)
 
-# ---------------- RUN APP ---------------- #
+
 root.mainloop()
