@@ -99,5 +99,12 @@ tkinter
 ethical-hacking
 
 let's run .
+###FOR KALI LINUX :-
+```bash
+pip install scapy
+git clone https://github.com/sriman-git09/NETWORK_PACKET_ANALYZER.git
+cd NETWORK_PACKET_ANALYZER
+sudo python3 network_packet_analyzer.py
+
 
 
